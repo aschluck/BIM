@@ -1,11 +1,11 @@
 import torch.nn as nn
 import torch
 def BIM(image, model, label):
-    epsilon=(10/255) #normilized and changed because of model size
+    epsilon=(4/255) #normilized and changed because of model size
     alpha= (1/255)  #based on (paper) but we normalized by 1/255
-    #num_iterations = int(min(4.0 + (epsilon * alpha*255),
-    #                1.25 * (epsilon * alpha*255)))  # based on paper
-    num_iterations=int(epsilon/alpha)#ten is the perfect number
+    num_iterations = int(min(4.0 + (epsilon * 255),
+                    1.25 * (epsilon * 255)))  # based on paper
+    #num_iterations=int(epsilon/alpha)#ten is the perfect number when epsilon is changing
     adversary= image.clone().detach()
 
     for i in range(num_iterations):
